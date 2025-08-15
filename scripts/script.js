@@ -43,24 +43,28 @@ function colorMatch(e){
         alert ('Color does not exist on this page');
         return;
     }
-    let colorVal = colorInputEl.value.toLowerCase();
+    let colorVal = colorInputEl.value.toUpperCase();
     const listEl = document.createElement('li');
     listEl.innerHTML = `<input type="checkbox" id="${colorVal}"><label for="${colorVal}">${colorVal.toUpperCase()}</label><br>`;
     
-    colorListEl.appendChild(listEl);
+    
 
     // before adding it to ul we will iterate over the li labels to make sure that color doesnt already exist in the list
     const colorsList = document.querySelectorAll('label');
-
-    for(color of colorsList){
+    if(colorsList.length != 0){
+        for(color of colorsList){
         console.log(color.textContent);
-        // if(color.textContent == colorVal){
-        //     alert ('color has already been added');
-        //     return;
-        // } else{
-        //     colorListEl.appendChild(listEl);
-        // }
+        if(color.textContent == colorVal){
+            alert ('color has already been added');
+            return;
+        } else{
+            colorListEl.appendChild(listEl);
+        }
     }
+    } else{
+        colorListEl.appendChild(listEl);
+    }
+    
     
     
     
