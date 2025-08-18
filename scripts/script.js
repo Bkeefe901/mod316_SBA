@@ -6,62 +6,68 @@ const Arr = [
 ]
 let colorArr = [];
 
+// Convert all css colors in array to lowercase
 for (color of Arr) {
     let lowColor = color.toLowerCase();
     colorArr.push(lowColor);
 
 }
-
+// create a variable for the the div 'mainContainer';
 const mainEl = document.getElementById('mainContainer');
 
 
 
 // create variable for the color input in the form
 const colorInputEl = document.getElementById('colorInput');
-console.log(colorInputEl);
+//console.log(colorInputEl);
+
+
 // create variable for the form
 const formEl = document.querySelector('form');
-console.log(formEl);
+//console.log(formEl);
+
 // create variable for the ul with id="colorList"
 const colorListEl = document.getElementById('colorList');
+
 // Add event listener to the form tag when a submit event occurs
 formEl.addEventListener('submit', colorMatch);
+
 // The function for it will test the color entered in the input matches a dictionary of colors used in html. if so it will create a new list element with the colorname and a check box.
 function colorMatch(e) {
     e.preventDefault();
     //alert ('submit event occured');
-    const colorValCheck = validateColor();
+    const colorValCheck = validateColor(); // validate color is a helper function at the bottom of the page
     if (!colorValCheck) {
         alert('Color does not exist on this page');
         return;
     }
-    let colorVal = colorInputEl.value.toUpperCase();
-    const listEl = document.createElement('li');
-    listEl.innerHTML = `<input type="checkbox" id="${colorVal}"><label for="${colorVal}">${colorVal.toUpperCase()}</label><br>`;
+    let colorVal = colorInputEl.value.toUpperCase(); // converts the user inputed color to upper case and saves in variable colorVal
+    const listEl = document.createElement('li'); // creates a new <li> 
+    listEl.innerHTML = `<input type="checkbox" id="${colorVal}"><label for="${colorVal}">${colorVal.toUpperCase()}</label><br>`; // inside the new li adds input (checkbox) with id = colorVal and label 
 
 
 
     // before adding it to ul we will iterate over the li labels to make sure that color doesnt already exist in the list
     const colorsList = document.querySelectorAll('label');
-    if (colorsList.length != 0) {
-        for (color of colorsList) {
-            console.log(color.textContent);
-            if (color.textContent == colorVal) {
-                alert('color has already been added');
-                colorInputEl.value = '';
-                return;
+    if (colorsList.length != 0) { // checks if there are any previously created colors, if not:
+        for (color of colorsList) { // iterates through css colorList to check if the new label id is in there.
+            //console.log(color.textContent);
+            if (color.textContent == colorVal) { // if it does..
+                alert('color has already been added'); // alert the user
+                colorInputEl.value = ''; // clear the input
+                return; // return nothing
             } else {
-                colorListEl.appendChild(listEl);
+                colorListEl.appendChild(listEl); // if it does not append the li to the ul
             }
         }
-    } else {
-        colorListEl.appendChild(listEl);
+    } else { // If there were no previously entered colors:
+        colorListEl.appendChild(listEl); // it appends it to ul
 
     }
 
 
 
-    colorInputEl.value = '';
+    colorInputEl.value = ''; // clears the input
 
 
 
@@ -80,41 +86,59 @@ const body = mainEl.parentNode;
 
 console.log(checkedColors);
 
-colorListEl.addEventListener('change', colorChanger);
-let colorCycleArr = [];
-let colorIndex = 0;
+colorListEl.addEventListener('change', colorChanger); // event listener for checking checkboxes.
+let colorCycleArr = []; // initializes array for checked colors
 
-function colorChanger(e) {
+
+function colorChanger(e) { 
+    let colorIndex = 0; // intitialize variable 
     let index;
-    const colorId = e.target.getAttribute("id");
-    if (e.target.checked) {
-        colorCycleArr.push(colorId);
+    const colorId = e.target.getAttribute("id"); // caches the id of the e.target's id attribute (the color)
+    if (e.target.checked) { // if the target of the event is 'checked'
+        colorCycleArr.push(colorId); // pushes colorId to the array for colors
         //alert(`${colorId} has been checked`);
         //alert(colorCycleArr);
-    } else if (!e.target.checked) {
-        index = colorCycleArr.indexOf(colorId);
-        colorCycleArr.splice(index, 1);
-        //alert(colorCycleArr);
-        
+    } else if (!e.target.checked) { // if e.target was 'unchecked':
+        index = colorCycleArr.indexOf(colorId); // set index variable to the index of the color id in the color array
+        colorCycleArr.splice(index, 1); // remove that index in the array (remove that color from the array)
+        //alert(colorCycleArr); 
 
     }
 
 
 
 
-    setInterval(() => {
-        if(colorCycleArr.length == 0){
-            body.style.backgroundColor = White;
-        } else{
-            body.style.backgroundColor = colorCycleArr[colorIndex];
-        colorIndex = (colorIndex + 1) % colorCycleArr.length;
-        }
+    // setInterval(() => { // interval function to cycle through the color array
+    //     if(colorCycleArr.length == 0){ // if the color array is empty:
+    //         body.style.backgroundColor = White; // set the background to white
+    //     } else{
+    //         colorIndex = (colorIndex + 1) % colorCycleArr.length;
+    //         body.style.backgroundColor = colorCycleArr[colorIndex]; // otherwise set 
+            
+    //     }
         
-        }, 3000);
+    //     }, 3000);
+
+
+    
+    if(colorCycleArr.length == 0){ // if the color array is empty:
+        body.style.backgroundColor = 'White'; // set the background to white
+    } else{ // otherwise:
+        setInterval(() => { // interval function to cycle through the color array
+            colorIndex = (colorIndex + 1) % colorCycleArr.length; // makes sure that color index continually cycles through different indexes that are available within the color array
+            body.style.backgroundColor = colorCycleArr[colorIndex]; // set the background color of the body to the color at that index
+            
+        }, 3000); // change it every 3 seconds
+
+    }
+
     
 
     
-    return colorCycleArr
+    
+
+    
+ 
 
 }
 
