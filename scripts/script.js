@@ -11,16 +11,8 @@ for (color of Arr) {
     colorArr.push(lowColor);
 
 }
-// // cache the input with id='inputColor' into a variable called inputColorEl
-// const inputColorEl = document.getElementById('inputColor');
-// // // Create event listener to input for color (inputColorEl)
-// // inputColorEl.addEventListener('click', colorInput
-// //     // If color doesnt match color in color dictionary send an alert
 
-
-// // Create event listener to button
-// inputColorEl.addEventListener()
-//     // When clicked it will create a li (and a checkbox-input and a label inside) and appends it to ul with the input submitted as the textContent of the li>label
+const mainEl = document.getElementById('mainContainer');
 
 
 
@@ -83,7 +75,8 @@ function colorMatch(e) {
 // when a checkbox is checked in a li it cyles the color from that label in the background of the body
 
 let checkedColors = colorListEl.getElementsByTagName('input');
-const body = document.getElementById('bigBody');
+const body = mainEl.parentNode;
+
 
 console.log(checkedColors);
 

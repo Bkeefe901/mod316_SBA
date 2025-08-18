@@ -9,10 +9,10 @@
     <script defer src="./scripts/script.js"></script>
 </head>
 
-<body id="bigBody">
-    <div>
+<body>
+    <div id="mainContainer">
         <form>
-            <input id="colorInput" type="text" placeholder="Add Color Options" required>
+            <input id="colorInput" type="text" placeholder="Add Color Options" pattern="^[A-Za-z]{3,20}$" required>
             <button type="submit">Submit</button>
         </form>
         <ul id="colorList">
