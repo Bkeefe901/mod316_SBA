@@ -89,6 +89,7 @@ console.log(checkedColors);
 
 colorListEl.addEventListener('change', colorChanger);
 let colorCycleArr = [];
+let colorIndex = 0;
 
 function colorChanger(e) {
     let index;
@@ -103,22 +104,20 @@ function colorChanger(e) {
 
     }
 
-    return colorCycleArr;
+    setInterval(() => {
+        body.style.backgroundColor = colorCycleArr[colorIndex];
+        colorIndex = (colorIndex + 1) % colorCycleArr.length;
+        }, 3000);
+    
+
+
+    
+
+
 
 
 }
 
-function colorCycler() {
-    for (color of colorCycleArr) {
-        body.style.backgroundColor = color;
-
-
-    }
-
-
-}
-
-setInterval(colorCycler, 2000); 
 
 
 
