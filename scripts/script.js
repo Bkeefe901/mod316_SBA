@@ -108,18 +108,6 @@ function colorChanger(e) {
 
 
 
-    // setInterval(() => { // interval function to cycle through the color array
-    //     if(colorCycleArr.length == 0){ // if the color array is empty:
-    //         body.style.backgroundColor = White; // set the background to white
-    //     } else{
-    //         colorIndex = (colorIndex + 1) % colorCycleArr.length;
-    //         body.style.backgroundColor = colorCycleArr[colorIndex]; // otherwise set 
-            
-    //     }
-        
-    //     }, 3000);
-
-
     
     if(colorCycleArr.length == 0){ // if the color array is empty:
         body.style.backgroundColor = 'White'; // set the background to white
@@ -128,7 +116,7 @@ function colorChanger(e) {
             colorIndex = (colorIndex + 1) % colorCycleArr.length; // makes sure that color index continually cycles through different indexes that are available within the color array
             body.style.backgroundColor = colorCycleArr[colorIndex]; // set the background color of the body to the color at that index
             
-        }, 3000); // change it every 3 seconds
+        }, 2000); // change it every 2 seconds
 
     }
 

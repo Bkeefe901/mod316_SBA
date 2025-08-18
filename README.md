@@ -1,5 +1,10 @@
 # The Document Object Model
 
+## Explanation of Project
+
+I call my project "Light Show". It contains an input and a submit button. You can enter in any css color name and submit, one at a time (casing doesnt matter, however there is an html form validation to make sure that you only enter letters 3-20 characters long with no spaces, numbers or special characters. also if it is not a css color you will get an alert). If you try entering the same color twice, you will get an alert. When you hit submit, the color you entered will appear below with a checkbox next to it. This way you can create a 'palette' of colors. Check the boxes you want and the background color will flash through them. You can uncheck them and check them or submit more at any time and it will update the light show.
+
+
 ## Minimum Requirments
 - Cache at least one element using selectElementById.
 - Cache at least one element using querySelector or querySelectorAll.
@@ -19,3 +24,4 @@
 - Commit frequently to the git repository.
 - Include a README file that contains a description of your application.
 - Level of effort displayed in creativity, presentation, and user experience.
+
