@@ -72,22 +72,15 @@ function colorMatch(e) {
     colorInputEl.value = '';
 
 
-    // Iterate through all inputs that are children of the <li>'s if checked = 'true' set the background-color of the body equal to the id attribute of that input. Use setInterval to set time to cycle through the different colors.
 
 
-    
+
 
 
 
 }
 // Create event listern for the ul 
 // when a checkbox is checked in a li it cyles the color from that label in the background of the body
-// let checkedColors = colorListEl.getElementsByTagName('input');
-// const body = document.getElementById('bigBody');
-
-// console.log(colorListEl);
-
-//checkedColors.addEventListener('change', colorChanger);
 
 let checkedColors = colorListEl.getElementsByTagName('input');
 const body = document.getElementById('bigBody');
@@ -95,43 +88,44 @@ const body = document.getElementById('bigBody');
 console.log(checkedColors);
 
 colorListEl.addEventListener('change', colorChanger);
+let colorCycleArr = [];
 
 function colorChanger(e) {
+    let index;
     const colorId = e.target.getAttribute("id");
-    if(e.target.checked){
-    alert(`${colorId} has been checked`);
+    if (e.target.checked) {
+        colorCycleArr.push(colorId);
+        //alert(`${colorId} has been checked`);
+        //alert(colorCycleArr);
+    } else if (!e.target.checked) {
+        index = colorCycleArr.indexOf(colorId);
+        colorCycleArr.splice(index, 1);
+
     }
 
-
+    return colorCycleArr;
 
 
 }
 
-
-// function colorChanger(e) {
-//     console.log(e.target);
-//     // if(e.checked){
-//     //     alert('box is checked');
-//     // }
+function colorCycler() {
+    for (color of colorCycleArr) {
+        body.style.backgroundColor = color;
 
 
+    }
 
 
-// }
+}
 
-// for (selected of checkedColors) {
-//         if (!selected.checked) {
-//             continue;
-//         } else {
-//             body.style.backgroundColor = selected.getAttribute('id');
+setInterval(colorCycler, 2000); 
 
-//         }
-//     }
 
 
 
 
 // helper functions:
+
 // validateColor function to check that the color entered is within the array of possible html colors;
 function validateColor() {
     let colorVal = colorInputEl.value.toLowerCase();
