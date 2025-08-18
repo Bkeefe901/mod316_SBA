@@ -94,22 +94,33 @@ function colorChanger(e) {
     } else if (!e.target.checked) {
         index = colorCycleArr.indexOf(colorId);
         colorCycleArr.splice(index, 1);
+        //alert(colorCycleArr);
+        
 
     }
 
+
+
+
     setInterval(() => {
-        body.style.backgroundColor = colorCycleArr[colorIndex];
+        if(colorCycleArr.length == 0){
+            body.style.backgroundColor = White;
+        } else{
+            body.style.backgroundColor = colorCycleArr[colorIndex];
         colorIndex = (colorIndex + 1) % colorCycleArr.length;
+        }
+        
         }, 3000);
     
 
-
     
-
-
-
+    return colorCycleArr
 
 }
+
+
+
+
 
 
 
